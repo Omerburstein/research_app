@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.jjoe64.graphview.GraphView
+        app:layout_constraintTop_toTopOf="@+id/GraphHoriguidever"
+        android:layout_width = "375dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="350dp"
+        android:id = "@+id/graphid" />
+
+    <TextView
+        app:layout_constraintStart_toStartOf="@+id/TextVerguidever"
+        app:layout_constraintTop_toTopOf="@+id/Text1Horiguidever"
+        android:id="@+id/AvgMood"
+        android:layout_width="350dp"
+        android:layout_height="70dp"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:text="מצב הרוח הממוצע: אין מספיק נתונים" />
+
+    <TextView
+        app:layout_constraintStart_toStartOf="@+id/TextVerguidever"
+        app:layout_constraintTop_toTopOf="@+id/Text2Horiguidever"
+        android:id="@+id/BestDay"
+        android:textColor="@color/black"
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:textSize="25dp"
+        android:layout_alignTop="@+id/AvgMood"
+        android:text="היום הטוב ביותר בשבוע לך: " />
+
+
+    <ImageView
+        app:layout_constraintTop_toTopOf="@+id/btnHoriguidever"
+        app:layout_constraintEnd_toStartOf="@+id/endbtnguidever"
+        app:layout_constraintStart_toStartOf="@+id/startbtnguidever"
+        android:id="@+id/BackToMain"
+        android:onClick="BackToMain"
+        android:layout_width="130dp"
+        android:layout_height="47dp"
+        android:background="@drawable/android3"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/endbtnguidever"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.55" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/startbtnguidever"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.45" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/TextVerguidever"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/GraphHoriguidever"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.051983584" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/Text1Horiguidever"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.60" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/Text2Horiguidever"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.75" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/btnHoriguidever"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.89" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/Header"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:textSize="40sp"
+        android:layout_marginTop="70dp"
+        android:textColor="@color/black"
+        android:text="בבקשה מלא/י את זה"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center"/>
+
+    <NumberPicker
+        android:id="@+id/age"
+        android:layout_width="185dp"
+        android:layout_height="70dp"
+        android:scrollbarSize="70dp"
+        app:layout_constraintEnd_toStartOf="@id/sexText"
+        app:layout_constraintTop_toTopOf="@+id/sexText"
+        android:visibility="invisible"
+        android:theme="@style/AppTheme.Picker"
+        />
+
+    <TextView
+        android:id="@+id/ageText"
+        android:layout_width="185dp"
+        android:layout_height="70dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@id/sexText"
+        app:layout_constraintTop_toTopOf="@+id/sexText"
+        android:text="הזן את גילך:"
+        android:visibility="invisible"
+        />
+
+    <TextView
+        android:id="@+id/sexText"
+        android:layout_width="185dp"
+        android:layout_height="70dp"
+        android:textColor="@color/black"
+        android:text="הזן את מינך:"
+        android:textSize="20sp"
+        android:layout_marginTop="150dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Header"
+        android:layout_marginEnd="20dp"
+        />
+
+    <Spinner
+        android:id="@+id/sex"
+        android:layout_width="185dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintEnd_toStartOf="@id/sexText"
+        app:layout_constraintBottom_toBottomOf="@+id/sexText"
+        />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/Header"
+        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <TextView
+            android:id="@+id/answer11"
+            app:layout_constraintTop_toTopOf="@+id/options"
+            app:layout_constraintEnd_toStartOf="@+id/options"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="13dp"
+            android:layout_marginStart="13dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/answer12"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="13dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/answer11"
+            app:layout_constraintEnd_toStartOf="@id/options"
+            app:layout_constraintStart_toStartOf="parent"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/answer13"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="13dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/answer12"
+            app:layout_constraintEnd_toStartOf="@id/options"
+            app:layout_constraintStart_toStartOf="parent"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/answer14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="13dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/answer13"
+            app:layout_constraintEnd_toStartOf="@id/options"
+            app:layout_constraintStart_toStartOf="parent"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+
+        <RadioGroup
+            android:id="@+id/options"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="30dp">
+
+            <RadioButton
+                android:id="@+id/op11"
+                android:onClick="NextBtn"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/IconColor"
+                />
+
+            <RadioButton
+                android:layout_marginTop="20dp"
+                android:id="@+id/op12"
+                android:onClick="NextBtn"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/IconColor"
+                />
+
+            <RadioButton
+                android:id="@+id/op13"
+                android:onClick="NextBtn"
+                android:layout_width="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/IconColor"
+                />
+
+            <RadioButton
+                android:id="@+id/op14"
+                android:onClick="NextBtn"
+                android:layout_marginTop="20dp"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/IconColor"
+                />
+
+        </RadioGroup>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/backBtn"
+        android:layout_width="130dp"
+        android:layout_height="47dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="50dp"
+        android:onClick="prevPage"
+        android:background="@drawable/android3"
+        app:layout_constraintTop_toBottomOf="@+id/question"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/continueBtn"
+        android:onClick="movePage"
+        android:visibility="invisible"
+        android:layout_width="130dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/android5"
+        app:layout_constraintTop_toBottomOf="@+id/question"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

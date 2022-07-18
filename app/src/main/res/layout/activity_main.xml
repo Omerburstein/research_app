@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/android7"
+        android:onClick="openExplanation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/android0"
+        android:contentDescription="Description"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="250dp"
+        android:layout_height="80dp"
+        android:checked="true"
+        android:text="לחץ לכיבוי האפליקציה"
+        android:textSize="17sp"
+        android:theme="@style/SCBSwitch"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/textguidhor"
+        app:layout_constraintStart_toEndOf="@+id/mid"
+        app:layout_constraintEnd_toStartOf="@+id/mid"
+        app:layout_constraintTop_toBottomOf="@+id/btnguidehor"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="130dp"
+        android:layout_height="47dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/android2"
+        android:contentDescription="Stats Page Button"
+        android:onClick="ToStatisticsPage"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toStartOf="@+id/mid"
+        app:layout_constraintTop_toBottomOf="@+id/textguidhor" />
+
+    <ImageView
+        android:onClick="closeApp"
+        android:layout_width="130dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/android6"
+        app:layout_constraintTop_toTopOf="@id/image"
+        app:layout_constraintStart_toEndOf="@id/mid"/>
+
+    <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:background="#80000000"
+        android:clickable="true"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <FrameLayout
+            android:id="@+id/frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true" />
+    </RelativeLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/textguidhor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.82" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/mid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/btnguidehor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.69" />
+
+</androidx.constraintlayout.widget.ConstraintLayout >

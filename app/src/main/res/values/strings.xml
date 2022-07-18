@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Depression Detection</string>
+    <string name="asking_alarm_string">
+        <br>אנו רוצים להודיע לך כאשר יש לך הודעה מהאפליקציה בכל פעם שנפתח הטלפון שלך</br>
+        <br>\n</br>
+        <br>לחץ על "כן" בכדי לאפשר זאת</br>
+    </string>
+</resources>

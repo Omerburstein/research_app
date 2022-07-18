@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="320dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/explanationText"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/parentNameText"
+                app:layout_constraintTop_toBottomOf="@id/explanationText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/mid"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:textSize="15sp"
+                android:layout_marginEnd="10dp"
+                android:text="שם ההורה/ אפוטרופוס:"
+                android:textColor="@color/black"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/parentSigText"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:text="חתימה:"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@id/explanationText"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/mid"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/mid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.6" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <EditText
+        android:id="@+id/parentName"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        app:layout_constraintTop_toBottomOf="@id/scroll"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/middle"/>
+
+    <com.DD.GooglePlay.SignitureView
+        android:id="@+id/parentSig"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        app:layout_constraintTop_toBottomOf="@id/scroll"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/middle"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/middle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.6" />
+</androidx.constraintlayout.widget.ConstraintLayout>
