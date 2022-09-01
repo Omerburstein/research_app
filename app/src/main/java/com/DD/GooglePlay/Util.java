@@ -58,7 +58,7 @@ public class Util {
         // Create the TaskStackBuilder and add the intent, which inflates the back stack
         stackBuilder = TaskStackBuilder.create(context);
         notificationManage = NotificationManagerCompat.from(context);
-        resultIntent = new Intent(context, com.DD.GooglePlay.MainActivity.class);
+        resultIntent = new Intent(context, MainActivity.class);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = channel_name;
             String description = channel_description;
@@ -73,7 +73,8 @@ public class Util {
         stackBuilder.addNextIntentWithParentStack(resultIntent);
         // Get the PendingIntent containing the entire back stack
         resultPendingIntent =
-                stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+                stackBuilder.getPendingIntent(0,
+                        PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
         // Register the channel with the system; you can't change the importance
         // or other notification behaviors after this
         builder = new NotificationCompat.Builder(context, CHANNEL_ID)

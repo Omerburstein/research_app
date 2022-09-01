@@ -272,9 +272,9 @@ public class PhotoTaker extends Service {
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void startMyOwnForeground()
     {
-        String NOTIFICATION_CHANNEL_ID = "ForegroundChannel";
-        String channelName = "Background Service";
-        NotificationChannel chan = new NotificationChannel(NOTIFICATION_CHANNEL_ID, channelName, NotificationManager.IMPORTANCE_HIGH);
+        String NOTIFICATION_CHANNEL_ID = "DepressionDetectionForegroundChannel";
+        String channelName = "Depression Detection taking pics";
+        NotificationChannel chan = new NotificationChannel(NOTIFICATION_CHANNEL_ID, channelName, NotificationManager.IMPORTANCE_DEFAULT);
         chan.setLightColor(Color.BLUE);
         chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
         foregroundManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -283,7 +283,7 @@ public class PhotoTaker extends Service {
             NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(getApplicationContext(), NOTIFICATION_CHANNEL_ID);
             Notification notification = notificationBuilder.setOngoing(true)
                     .setContentTitle("App is running in background")
-                    .setPriority(NotificationManager.IMPORTANCE_MAX)
+                    .setPriority(NotificationManager.IMPORTANCE_DEFAULT)
                     .setCategory(Notification.CATEGORY_SERVICE)
                     .setSmallIcon(R.drawable.ic_stat_name)
                     .setColor(Color.argb(0,59, 132, 164))

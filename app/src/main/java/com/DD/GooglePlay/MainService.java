@@ -240,7 +240,8 @@ public class MainService extends JobService {
                 stackBuilder.addNextIntentWithParentStack(resultIntent);
                 // Get the PendingIntent containing the entire back stack
                 PendingIntent resultPendingIntent =
-                        stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+                        stackBuilder.getPendingIntent(0,
+                                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                         .setSmallIcon(R.drawable.ic_stat_name)
@@ -265,7 +266,8 @@ public class MainService extends JobService {
             stackBuilder.addNextIntentWithParentStack(resultIntent);
             // Get the PendingIntent containing the entire back stack
             PendingIntent resultPendingIntent =
-                    stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+                    stackBuilder.getPendingIntent(0,
+                            PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                     .setSmallIcon(R.drawable.ic_stat_name)

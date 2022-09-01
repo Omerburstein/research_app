@@ -1,5 +1,7 @@
 package com.DD.GooglePlay;
 
+import static android.app.PendingIntent.FLAG_IMMUTABLE;
+import static android.app.PendingIntent.FLAG_MUTABLE;
 import static com.DD.GooglePlay.MainService.TakePic;
 import static com.DD.GooglePlay.MainService.schedulejob;
 import static com.DD.GooglePlay.MainService.sharedPref;
@@ -9,8 +11,11 @@ import static java.lang.Thread.sleep;
 import android.Manifest;
 import android.app.ActivityManager;
 import android.app.KeyguardManager;
+import android.app.PendingIntent;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,6 +25,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -35,6 +41,7 @@ import android.widget.ScrollView;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -160,6 +167,20 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         return ret;
     }
 
+    public void showWidgetAlarm(){
+        new AlertDialog.Builder(this)
+                .setTitle("הסבר על widget")
+                .setMessage(getString(R.string.widget_explanation))
+                .setNeutralButton("אוקיי", new DialogInterface.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        askToAddWidget();
+                    }
+                })
+                .create().show();
+    }
+
     public void keepGoing() {
         try {
             while (!createDirIfNotExists("DataSet")) sleep(100);
@@ -167,6 +188,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         } catch (Exception e) {
             e.printStackTrace();
         }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && AppWidgetManager.getInstance(this).getAppWidgetIds(new ComponentName(this,HomeScreenWidget.class)).length < 1) showWidgetAlarm();
         KeyguardManager myKM = (KeyguardManager) getApplicationContext().getSystemService(Context.KEYGUARD_SERVICE);
         while(myKM.inKeyguardRestrictedInputMode()) {
             myKM = (KeyguardManager) getApplicationContext().getSystemService(Context.KEYGUARD_SERVICE);
@@ -212,6 +234,24 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         this.finish();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void askToAddWidget(){
+        AppWidgetManager mAppWidgetManager = getSystemService(AppWidgetManager.class);
+        ComponentName myProvider = new ComponentName(MainActivity.this, HomeScreenWidget.class);
+        Bundle b = new Bundle();
+        if (mAppWidgetManager.isRequestPinAppWidgetSupported()) {
+            Intent pinnedWidgetCallbackIntent = new Intent(MainActivity.this, HomeScreenWidget.class);
+            PendingIntent successCallback = null;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+                successCallback = PendingIntent.getBroadcast(MainActivity.this, 0,
+                        pinnedWidgetCallbackIntent, FLAG_MUTABLE);
+            }
+            else successCallback = PendingIntent.getBroadcast(MainActivity.this, 0,
+                    pinnedWidgetCallbackIntent, FLAG_IMMUTABLE);
+
+            mAppWidgetManager.requestPinAppWidget(myProvider, b, successCallback);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

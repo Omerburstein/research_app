@@ -3,53 +3,63 @@
     package="com.DD.GooglePlay">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.REQUEST_COMPANION_START_FOREGROUND_SERVICES_FROM_BACKGROUND"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.REQUEST_COMPANION_START_FOREGROUND_SERVICES_FROM_BACKGROUND" />
+
     <application
         android:allowBackup="false"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="false"
-        android:hardwareAccelerated="false"
         android:largeHeap="true"
+        android:supportsRtl="false"
         android:theme="@style/AppTheme">
+        <receiver
+            android:name=".HomeScreenWidget"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
 
-        <activity android:name=".InfoActivity"/>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/home_page_widget_info" />
+        </receiver>
 
-        <activity android:name=".MainActivity"
+        <activity android:name=".InfoActivity" />
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".Questionnaire"/>
-
-        <activity android:name=".StatsPage"/>
+        <activity android:name=".Questionnaire"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".StatsPage" />
 
         <service
-            android:permission="android.permission.BIND_JOB_SERVICE"
             android:name=".MainService"
-            android:enabled="true">
-        </service>
-
-        <service android:name=".PhotoTaker"
             android:enabled="true"
-            android:foregroundServiceType="camera">
+            android:permission="android.permission.BIND_JOB_SERVICE"></service>
+        <service
+            android:name=".PhotoTaker"
+            android:enabled="true"
+            android:foregroundServiceType="camera"></service>
 
-        </service>
-
-        <activity android:name=".ChooseFeeling"/>
+        <activity android:name=".ChooseFeeling" />
 
         <service
-            android:enabled="true"
             android:name=".SwitchServer"
-            android:label="@string/app_name"
-            android:exported="true">
+            android:enabled="true"
+            android:exported="true"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="com.DD.GooglePlay.SwitchServer" />
 
@@ -57,16 +67,16 @@
             </intent-filter>
         </service>
 
-        <receiver android:name=".Receiver"
+        <receiver
+            android:name=".Receiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
                 <action android:name="startCameraService" />
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
             </intent-filter>
         </receiver>
-
     </application>
 
 </manifest>

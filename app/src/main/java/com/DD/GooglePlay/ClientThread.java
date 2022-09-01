@@ -18,13 +18,23 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.UUID;
+
+import android.telephony.TelephonyManager;
+import android.content.Context;
+
 public class ClientThread {
 
     InputStream input;
@@ -50,6 +60,8 @@ public class ClientThread {
 
     public Thread getInfoThread(){ return sendingInfoThread; }
     public void setInfoThread(Thread thread){ sendingInfoThread = thread; }
+
+    final String idFileName = "id.txt";
 
     public void sendInformation() {
         sendingInfoThread = new Thread(){
@@ -122,6 +134,45 @@ public class ClientThread {
         return new String[]{parentSignature, childSignature};
     }
 
+    public synchronized static String createId() {
+        return UUID.randomUUID().toString();
+    }
+
+    private String readFromFile(Context context) {
+        String ret = "";
+        try {
+            InputStream inputStream = context.openFileInput(idFileName);
+            if (inputStream != null) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString = "";
+                StringBuilder stringBuilder = new StringBuilder();
+                while ((receiveString = bufferedReader.readLine()) != null ) {
+                    stringBuilder.append("\n").append(receiveString);
+                }
+                inputStream.close();
+                ret = stringBuilder.toString();
+            }
+        }
+        catch (FileNotFoundException e) {
+            Log.e("login activity", "File not found: " + e);
+        } catch (IOException e) {
+            Log.e("login activity", "Can not read file: " + e);
+        }
+        return ret;
+    }
+
+    private void writeToFile(String data,Context context) {
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(idFileName, Context.MODE_PRIVATE));
+            outputStreamWriter.write(data);
+            outputStreamWriter.close();
+        }
+        catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e);
+        }
+    }
+
     public ClientThread(Context context){
         try {
             entered_sending = true;
@@ -133,7 +184,9 @@ public class ClientThread {
 
             if (files != null) {
                 try {
-                    androidId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+                    File file = new File(idFileName);
+                    if(!file.exists()) writeToFile(createId(), context);
+                    androidId = readFromFile(context);
                 } catch (Exception e) {
                     androidId = "";
                 }

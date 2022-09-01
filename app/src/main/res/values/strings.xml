@@ -5,4 +5,8 @@
         <br>\n</br>
         <br>לחץ על "כן" בכדי לאפשר זאת</br>
     </string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
+    <string name="widget_explanation">בגרסאות האחרונות של Android נעשה שימוש מדיניות, כך שעל מנת שהאפליקציה תוכל לפעול צריך להוסיף את הwidget לאחד מהמסכים שלכם ולא למחוק אותו כל עוד אתם משתמשים באפליקציה.</string>
 </resources>
